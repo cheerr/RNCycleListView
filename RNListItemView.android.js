@@ -15,14 +15,10 @@ const ITEM_VIEW_KEY = 'RNListItemViewKey'
 
 class Index extends Component {
 
-  static getDefaultProps () {
-
-    return {
-      rowHeight: 0,
-      renderRow: undefined,  //(dataObject,rowSizeObject)=>{}
-      position: 0,
-    }
-
+  static getDefaultProps: {
+    rowHeight: 0,
+    renderRow: undefined,  //(dataObject,rowSizeObject)=>{}
+    position: 0,
   }
 
   constructor (props) {

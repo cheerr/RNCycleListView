@@ -12,15 +12,11 @@ const RNListView = requireNativeComponent('RNListView', null)
 
 class Index extends Component {
 
-  static getDefaultProps () {
-
-    return {
-      dataSource: [],
-      onRowSize: undefined,  //(dataObject,index)=>{}
-      firstPageCount: 30,
-      renderRow: undefined,  //(dataObject,rowSizeObject)=>{}
-    }
-
+  static getDefaultProps: {
+    dataSource: [],
+    onRowSize: undefined,  //(dataObject,index)=>{}
+    firstPageCount: 30,
+    renderRow: undefined,  //(dataObject,rowSizeObject)=>{}
   }
 
   constructor (props) {
@@ -58,7 +54,7 @@ class Index extends Component {
       )
     }
 
-    console.log('RNList render rowSizes', rowSizes.length, firstPageCount)
+    console.log('RNList render rowSizes', rowSizes.length)
 
     return <RNListView
       {...this.props}
