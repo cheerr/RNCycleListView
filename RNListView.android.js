@@ -10,12 +10,13 @@ import RNListItemView from './RNListItemView'
 
 const RNListView = requireNativeComponent('RNListView', null)
 
+const CACHE_SIZE = 30
+
 class Index extends Component {
 
   static getDefaultProps: {
     dataSource: [],
     onRowSize: undefined,  //(dataObject,index)=>{}
-    firstPageCount: 30,
     renderRow: undefined,  //(dataObject,rowSizeObject)=>{}
   }
 
@@ -24,11 +25,11 @@ class Index extends Component {
     console.disableYellowBox = true
   }
 
-  _renderRow (rowSizes, firstPageCount) {
+  _renderRow (rowSizes) {
 
     let arr = []
 
-    for (let i = 0; i < Math.min(rowSizes.length, firstPageCount); i++) {
+    for (let i = 0; i < Math.min(rowSizes.length, CACHE_SIZE); i++) {
       arr.push(<RNListItemView
         key={i}
         rowHeight={rowSizes[i].rowHeight}
@@ -38,15 +39,13 @@ class Index extends Component {
       />)
     }
 
-    console.log('RNList', arr)
+    console.log('RNList  _renderRow length', arr.length)
     return arr
   }
 
   render () {
 
     let rowSizes = []
-
-    let firstPageCount = Math.max(30, this.props.firstPageCount ? this.props.firstPageCount : 0)
 
     for (let i = 0; i < this.props.dataSource.length; i++) {
       rowSizes.push(
@@ -61,7 +60,7 @@ class Index extends Component {
       rowSizes={rowSizes}
     >
       {
-        this._renderRow(rowSizes, firstPageCount)
+        this._renderRow(rowSizes)
       }
     </RNListView>
 
